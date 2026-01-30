@@ -1,0 +1,66 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "6cf29a66e0ec67031d83771294f4a1acc8618ab3407407dbf5a05aea563f1d5d"
+    }
+  ],
+  "containerPath" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/OPPOThemeTool.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "arm64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx26.2",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "arm64e",
+        "arm64",
+        "x86_64"
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Products",
+      "derivedDataPath" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build",
+      "indexDataStoreFolderPath" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "COLOR_DIAGNOSTICS" : "YES",
+          "diagnostic_message_length" : "117",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "YES",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

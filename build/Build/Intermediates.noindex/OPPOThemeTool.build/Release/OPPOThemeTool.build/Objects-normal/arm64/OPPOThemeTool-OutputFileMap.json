@@ -1,0 +1,26 @@
+{
+  "" : {
+    "const-values" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary.swiftconstvalues",
+    "dependencies" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary.d",
+    "diagnostics" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary.dia",
+    "emit-module-dependencies" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary-emit-module.dia",
+    "pch" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary.swiftdeps"
+  },
+  "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/OPPOThemeTool/Sources/App.swift" : {
+    "index-unit-output-path" : "/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/App.o",
+    "llvm-bc" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/App.bc",
+    "object" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/App.o"
+  },
+  "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/OPPOThemeTool/Sources/ContentView.swift" : {
+    "index-unit-output-path" : "/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/OPPOThemeTool/Sources/UnpackView.swift" : {
+    "index-unit-output-path" : "/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/UnpackView.o",
+    "llvm-bc" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/UnpackView.bc",
+    "object" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/UnpackView.o"
+  }
+}

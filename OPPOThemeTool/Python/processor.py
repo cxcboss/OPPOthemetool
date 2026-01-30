@@ -53,10 +53,32 @@ def get_zip_files(source_folder):
 
 def unpack_theme(theme_path, parent_folder):
     source_folder = theme_path
-    dest_folder = parent_folder
+    
+    if not os.path.exists(source_folder):
+        return {"success": False, "error": "资源路径不存在"}
+    
+    temp_dir = None
+    
+    if os.path.isfile(source_folder) and source_folder.endswith('.theme'):
+        if not is_zip_file(source_folder):
+            return {"success": False, "error": "不是有效的theme文件"}
+        
+        temp_dir = tempfile.mkdtemp()
+        try:
+            with zipfile.ZipFile(source_folder, 'r') as zip_ref:
+                zip_ref.extractall(temp_dir)
+            source_folder = temp_dir
+        except Exception as e:
+            if temp_dir:
+                shutil.rmtree(temp_dir, ignore_errors=True)
+            return {"success": False, "error": f"解压theme文件失败: {e}"}
     
     if not os.path.isdir(source_folder):
-        return {"success": False, "error": "源路径不是有效的文件夹"}
+        if temp_dir:
+            shutil.rmtree(temp_dir, ignore_errors=True)
+        return {"success": False, "error": "资源路径不是有效的文件夹"}
+    
+    dest_folder = parent_folder
     
     zip_files = get_zip_files(source_folder)
     
@@ -114,6 +136,9 @@ def unpack_theme(theme_path, parent_folder):
                     zip_ref.extractall(extract_path)
         except Exception as e:
             print(f"解压 {file_name} 失败: {e}", file=sys.stderr)
+    
+    if temp_dir:
+        shutil.rmtree(temp_dir, ignore_errors=True)
     
     return {"success": True, "output_folder": dest_folder, "message": f"解压完成: {os.path.basename(dest_folder)}"}
 

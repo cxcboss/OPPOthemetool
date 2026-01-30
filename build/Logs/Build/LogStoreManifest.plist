@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>12</integer>
+	<key>logs</key>
+	<dict>
+		<key>447B9F2E-0A6F-48FC-A4BA-FF615C33B6BB</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>447B9F2E-0A6F-48FC-A4BA-FF615C33B6BB.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>OPPOThemeTool project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>OPPOThemeTool</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project OPPOThemeTool with scheme OPPOThemeTool and configuration Release</string>
+			<key>timeStartedRecording</key>
+			<real>791491177.04300404</real>
+			<key>timeStoppedRecording</key>
+			<real>791491184.04473805</real>
+			<key>title</key>
+			<string>Building project OPPOThemeTool with scheme OPPOThemeTool and configuration Release</string>
+			<key>uniqueIdentifier</key>
+			<string>447B9F2E-0A6F-48FC-A4BA-FF615C33B6BB</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,12 @@
+{
+  "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/OPPOThemeTool/Sources/App.swift" : {
+    "abi-baseline-json" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPO主题打包解包工具.abi.json",
+    "const-values" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary.swiftconstvalues",
+    "dependencies" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary.d",
+    "diagnostics" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPOThemeTool-primary.dia",
+    "objc-header" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPO主题打包解包工具-Swift.h",
+    "swiftdoc" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPO主题打包解包工具.swiftdoc",
+    "swiftmodule" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPO主题打包解包工具.swiftmodule",
+    "swiftsourceinfo" : "/Users/chenxincheng/导出目录/OPPOthemetool/OPPOThemeTool/build/Build/Intermediates.noindex/OPPOThemeTool.build/Release/OPPOThemeTool.build/Objects-normal/arm64/OPPO主题打包解包工具.swiftsourceinfo"
+  }
+}

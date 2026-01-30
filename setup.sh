@@ -9,6 +9,8 @@ echo "=========================================="
 echo "OPPO 主题打包解包工具 - 构建脚本"
 echo "=========================================="
 
+BUILD_DIR="$SCRIPT_DIR/build"
+
 # 检查 XcodeGen 是否安装
 if ! command -v xcodegen &> /dev/null; then
     echo "XcodeGen 未安装，正在安装..."
@@ -32,13 +34,15 @@ fi
 
 echo ""
 echo "步骤 2: 构建项目..."
+rm -rf "$BUILD_DIR"
 xcodebuild -project OPPOThemeTool.xcodeproj \
     -scheme OPPOThemeTool \
     -configuration Release \
     -destination "platform=macOS" \
+    -derivedDataPath "$BUILD_DIR" \
     build
 
-APP_PATH="build/Release/OPPO主题打包解包工具.app"
+APP_PATH="$BUILD_DIR/Build/Products/Release/OPPO主题打包解包工具.app"
 if [ ! -d "$APP_PATH" ]; then
     echo "错误: 构建失败，未找到应用"
     exit 1
@@ -52,7 +56,14 @@ if [ -d "OPPOThemeTool/Resources" ]; then
 fi
 
 echo ""
-echo "步骤 4: 复制应用到桌面..."
+echo "步骤 4: 复制图标文件到应用..."
+if [ -f "icon.png" ]; then
+    cp "icon.png" "$APP_PATH/Contents/Resources/Assets.xcassets/AppIcon.appiconset/"
+    echo "图标文件已复制"
+fi
+
+echo ""
+echo "步骤 5: 复制应用到桌面..."
 cp -R "$APP_PATH" "$HOME/Desktop/"
 
 echo ""
