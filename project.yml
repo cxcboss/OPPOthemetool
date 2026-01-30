@@ -1,0 +1,47 @@
+name: OPPOThemeTool
+options:
+  bundleIdPrefix: com.oppo
+  deploymentTarget:
+    macOS: "12.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "12.0"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  OPPOThemeTool:
+    type: application
+    platform: macOS
+    sources:
+      - path: OPPOThemeTool/Sources
+        type: group
+    resources:
+      - path: OPPOThemeTool/Resources
+        type: group
+        excludes:
+          - "*.entitlements"
+      - path: OPPOThemeTool/Resources/OPPOThemeTool.entitlements
+        buildPhase: resources
+      - path: OPPOThemeTool/Python/processor.py
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_NAME: OPPO主题打包解包工具
+        PRODUCT_BUNDLE_IDENTIFIER: com.oppo.oppothemetool
+        INFOPLIST_FILE: OPPOThemeTool/Resources/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_ENTITLEMENTS: OPPOThemeTool/Resources/OPPOThemeTool.entitlements
+        LD_RUNPATH_SEARCH_PATHS:
+          - $(inherited)
+          - "@executable_path/../Frameworks"
+        ENABLE_HARDENED_RUNTIME: false
+        COMBINE_HIDPI_IMAGES: YES
+    entitlements:
+      path: OPPOThemeTool/Resources/OPPOThemeTool.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
