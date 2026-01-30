@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 echo "=========================================="
-echo "OPPO Theme Tool - 项目构建脚本"
+echo "OPPO 主题打包解包工具 - 构建脚本"
 echo "=========================================="
 
 # 检查 XcodeGen 是否安装
@@ -38,19 +38,32 @@ xcodebuild -project OPPOThemeTool.xcodeproj \
     -destination "platform=macOS" \
     build
 
-if [ ! -d "build/Release/OPPOThemeTool.app" ]; then
-    echo "错误: 构建失败"
+APP_PATH="build/Release/OPPO主题打包解包工具.app"
+if [ ! -d "$APP_PATH" ]; then
+    echo "错误: 构建失败，未找到应用"
     exit 1
 fi
 
 echo ""
-echo "步骤 3: 复制应用到桌面..."
-cp -R "build/Release/OPPOThemeTool.app" "$HOME/Desktop/"
+echo "步骤 3: 复制 Resources 文件夹到应用..."
+if [ -d "OPPOThemeTool/Resources" ]; then
+    cp -R "OPPOThemeTool/Resources" "$APP_PATH/Contents/"
+    echo "Resources 文件夹已复制"
+fi
+
+echo ""
+echo "步骤 4: 复制应用到桌面..."
+cp -R "$APP_PATH" "$HOME/Desktop/"
 
 echo ""
 echo "=========================================="
 echo "构建完成!"
-echo "应用已复制到桌面: OPPOThemeTool.app"
+echo "应用已复制到桌面: $HOME/Desktop/OPPO主题打包解包工具.app"
 echo "=========================================="
 
-open "$HOME/Desktop/OPPOThemeTool.app"
+# 询问是否打开应用
+read -p "是否打开应用? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    open "$HOME/Desktop/OPPO主题打包解包工具.app"
+fi

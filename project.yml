@@ -21,9 +21,13 @@ targets:
       - path: OPPOThemeTool/Sources
         type: group
     resources:
+      - path: OPPOThemeTool/Resources/Assets.xcassets
+        type: folder
+        buildPhase: resources
       - path: OPPOThemeTool/Resources
         type: group
         excludes:
+          - "Assets.xcassets"
           - "*.entitlements"
       - path: OPPOThemeTool/Resources/OPPOThemeTool.entitlements
         buildPhase: resources

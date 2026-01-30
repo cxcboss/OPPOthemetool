@@ -295,7 +295,7 @@ if __name__ == '__main__':
 struct UnpackView: View {
     @State private var selectedPath: String = ""
     @State private var isProcessing = false
-    @State private var statusMessage = "拖入主题文件夹到此处\\n或点击选择"
+    @State private var statusMessage = "拖入主题文件夹到此处\n或点击选择"
     @State private var statusColor: Color = .gray
     @State private var outputPath = ""
     
@@ -311,7 +311,7 @@ struct UnpackView: View {
                 isProcessing: $isProcessing,
                 statusMessage: $statusMessage,
                 statusColor: $statusColor,
-                placeholder: "拖入主题文件夹到此处\\n或点击选择",
+                placeholder: "拖入主题文件夹到此处\n或点击选择",
                 onDropped: { path in
                     processUnpack(path: path)
                 }
@@ -425,7 +425,7 @@ struct PackView: View {
                 isProcessing: $isProcessing,
                 statusMessage: $statusMessage,
                 statusColor: $statusColor,
-                placeholder: "拖入需要打包的文件夹到此处\\n或点击选择",
+                placeholder: "拖入需要打包的文件夹到此处\n或点击选择",
                 onDropped: { path in
                     processPack(path: path)
                 }
@@ -638,9 +638,14 @@ class DroppableView: NSView {
         let path = url.path
         let fileManager = FileManager.default
         
-        if fileManager.fileExists(atPath: path) && fileManager.isDirectory(path: path) {
-            onDrop?(path)
-            return true
+        if fileManager.fileExists(atPath: path) {
+            if fileManager.isDirectory(path: path) {
+                onDrop?(path)
+                return true
+            } else if path.hasSuffix(".theme") {
+                onDrop?(path)
+                return true
+            }
         }
         
         return false
