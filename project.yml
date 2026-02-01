@@ -20,25 +20,18 @@ targets:
     sources:
       - path: OPPOThemeTool/Sources
         type: group
-    resources:
       - path: OPPOThemeTool/Resources/Assets.xcassets
-        type: folder
         buildPhase: resources
-      - path: OPPOThemeTool/Resources
-        type: group
-        excludes:
-          - "Assets.xcassets"
-          - "*.entitlements"
+      - path: OPPOThemeTool/Resources/Info.plist
       - path: OPPOThemeTool/Resources/OPPOThemeTool.entitlements
-        buildPhase: resources
       - path: OPPOThemeTool/Python/processor.py
-        buildPhase: resources
     settings:
       base:
         PRODUCT_NAME: OPPO主题打包解包工具
         PRODUCT_BUNDLE_IDENTIFIER: com.oppo.oppothemetool
         INFOPLIST_FILE: OPPOThemeTool/Resources/Info.plist
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         CODE_SIGN_ENTITLEMENTS: OPPOThemeTool/Resources/OPPOThemeTool.entitlements
         LD_RUNPATH_SEARCH_PATHS:
           - $(inherited)

@@ -7,7 +7,6 @@ import shutil
 import zipfile
 import tempfile
 import json
-import subprocess
 
 def get_output_folder_name(source_folder):
     theme_info_path = os.path.join(source_folder, 'themeInfo.xml')
@@ -27,7 +26,6 @@ def get_output_folder_name(source_folder):
             return f"{editor}{summary_text}"
         return None
     except Exception as e:
-        print(f"读取themeInfo.xml失败: {e}", file=sys.stderr)
         return None
 
 def is_zip_file(file_path):
@@ -59,19 +57,20 @@ def unpack_theme(theme_path, parent_folder):
     
     temp_dir = None
     
-    if os.path.isfile(source_folder) and source_folder.endswith('.theme'):
-        if not is_zip_file(source_folder):
-            return {"success": False, "error": "不是有效的theme文件"}
-        
-        temp_dir = tempfile.mkdtemp()
-        try:
-            with zipfile.ZipFile(source_folder, 'r') as zip_ref:
-                zip_ref.extractall(temp_dir)
-            source_folder = temp_dir
-        except Exception as e:
-            if temp_dir:
-                shutil.rmtree(temp_dir, ignore_errors=True)
-            return {"success": False, "error": f"解压theme文件失败: {e}"}
+    if os.path.isfile(source_folder):
+        if source_folder.endswith('.theme'):
+            if not is_zip_file(source_folder):
+                return {"success": False, "error": "不是有效的theme文件"}
+            
+            try:
+                temp_dir = tempfile.mkdtemp()
+                with zipfile.ZipFile(source_folder, 'r') as zip_ref:
+                    zip_ref.extractall(temp_dir)
+                source_folder = temp_dir
+            except Exception as e:
+                if temp_dir:
+                    shutil.rmtree(temp_dir, ignore_errors=True)
+                return {"success": False, "error": f"解压theme文件失败: {e}"}
     
     if not os.path.isdir(source_folder):
         if temp_dir:
@@ -81,13 +80,16 @@ def unpack_theme(theme_path, parent_folder):
     dest_folder = parent_folder
     
     zip_files = get_zip_files(source_folder)
+    has_theme_widget = os.path.exists(os.path.join(source_folder, 'theme-widget')) and os.path.isdir(os.path.join(source_folder, 'theme-widget'))
     
-    if not zip_files:
+    if not zip_files and not has_theme_widget:
         return {"success": False, "error": "未找到需要解压的zip文件"}
     
     folder_name = get_output_folder_name(source_folder)
     if folder_name:
         dest_folder = os.path.join(dest_folder, folder_name)
+    
+    os.makedirs(dest_folder, exist_ok=True)
     
     picture_src = os.path.join(source_folder, 'picture')
     picture_dest = os.path.join(dest_folder, 'picture')
@@ -101,11 +103,17 @@ def unpack_theme(theme_path, parent_folder):
     if os.path.exists(theme_info_src):
         shutil.copy2(theme_info_src, theme_info_dest)
     
+    theme_widget_src = os.path.join(source_folder, 'theme-widget')
+    theme_widget_dest = os.path.join(dest_folder, 'theme-widget')
+    if os.path.exists(theme_widget_src) and os.path.isdir(theme_widget_src):
+        if os.path.exists(theme_widget_dest):
+            shutil.rmtree(theme_widget_dest)
+        shutil.copytree(theme_widget_src, theme_widget_dest)
+    
     lockscreen_dest = os.path.join(dest_folder, 'lockscreen')
     os.makedirs(lockscreen_dest, exist_ok=True)
     
-    total = len(zip_files)
-    for i, (location, zip_file) in enumerate(zip_files):
+    for location, zip_file in zip_files:
         file_name = os.path.basename(zip_file)
         if file_name.endswith('.zip'):
             base_name = file_name[:-4]
@@ -135,7 +143,7 @@ def unpack_theme(theme_path, parent_folder):
                 with zipfile.ZipFile(zip_file, 'r') as zip_ref:
                     zip_ref.extractall(extract_path)
         except Exception as e:
-            print(f"解压 {file_name} 失败: {e}", file=sys.stderr)
+            pass
     
     if temp_dir:
         shutil.rmtree(temp_dir, ignore_errors=True)
@@ -169,15 +177,17 @@ def pack_theme(folder_path):
         
         lockscreen_path = ensure_unicode_path(os.path.join(normalized_path, 'lockscreen'))
         picture_path = ensure_unicode_path(os.path.join(normalized_path, 'picture'))
+        theme_widget_path = ensure_unicode_path(os.path.join(normalized_path, 'theme-widget'))
         has_lockscreen = os.path.isdir(lockscreen_path)
         has_picture = os.path.isdir(picture_path)
+        has_theme_widget = os.path.isdir(theme_widget_path)
         
         subfolders = []
         for item in os.listdir(normalized_path):
             if item.startswith('.'):
                 continue
             item_path = ensure_unicode_path(os.path.join(normalized_path, item))
-            if os.path.isdir(item_path) and item not in ('lockscreen', 'picture'):
+            if os.path.isdir(item_path) and item not in ('lockscreen', 'picture', 'theme-widget'):
                 subfolders.append(item)
         
         temp_dir = tempfile.mkdtemp()
@@ -207,6 +217,17 @@ def pack_theme(folder_path):
                 files_to_zip.append((item_path, item))
             elif os.path.isdir(item_path) and item == 'picture':
                 for root, dirs, files in os.walk(picture_path):
+                    root = ensure_unicode_path(root)
+                    dirs[:] = [d for d in dirs if not ensure_unicode_path(d).startswith('.')]
+                    for file in files:
+                        file = ensure_unicode_path(file)
+                        if file.startswith('.'):
+                            continue
+                        file_path = ensure_unicode_path(os.path.join(root, file))
+                        rel_path = ensure_unicode_path(os.path.relpath(file_path, normalized_path))
+                        files_to_zip.append((file_path, rel_path))
+            elif os.path.isdir(item_path) and item == 'theme-widget':
+                for root, dirs, files in os.walk(theme_widget_path):
                     root = ensure_unicode_path(root)
                     dirs[:] = [d for d in dirs if not ensure_unicode_path(d).startswith('.')]
                     for file in files:

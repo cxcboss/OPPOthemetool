@@ -49,32 +49,25 @@ if [ ! -d "$APP_PATH" ]; then
 fi
 
 echo ""
-echo "步骤 3: 复制 Resources 文件夹到应用..."
-if [ -d "OPPOThemeTool/Resources" ]; then
-    cp -R "OPPOThemeTool/Resources" "$APP_PATH/Contents/"
-    echo "Resources 文件夹已复制"
-fi
-
-echo ""
-echo "步骤 4: 复制图标文件到应用..."
-if [ -f "icon.png" ]; then
-    cp "icon.png" "$APP_PATH/Contents/Resources/Assets.xcassets/AppIcon.appiconset/"
+echo "步骤 3: 复制图标文件到应用..."
+ICON_PATH="../icon.png"
+if [ -f "$ICON_PATH" ]; then
+    cp "$ICON_PATH" "$APP_PATH/Contents/Resources/icon.png"
     echo "图标文件已复制"
+else
+    echo "警告: 图标文件不存在: $ICON_PATH"
 fi
 
 echo ""
-echo "步骤 5: 复制应用到桌面..."
-cp -R "$APP_PATH" "$HOME/Desktop/"
+echo "步骤 4: 复制应用到临时目录..."
+TEMP_APP="$BUILD_DIR/OPPO主题打包解包工具.app"
+rm -rf "$TEMP_APP"
+cp -R "$APP_PATH" "$TEMP_APP"
+echo "应用已复制到: $TEMP_APP"
 
 echo ""
 echo "=========================================="
 echo "构建完成!"
-echo "应用已复制到桌面: $HOME/Desktop/OPPO主题打包解包工具.app"
+echo "请手动复制应用到桌面:"
+echo "cp -R \"$TEMP_APP\" \"\$HOME/Desktop/\""
 echo "=========================================="
-
-# 询问是否打开应用
-read -p "是否打开应用? (y/n) " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    open "$HOME/Desktop/OPPO主题打包解包工具.app"
-fi
