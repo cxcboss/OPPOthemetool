@@ -40,6 +40,8 @@ xcodebuild -project OPPOThemeTool.xcodeproj \
     -configuration Release \
     -destination "platform=macOS" \
     -derivedDataPath "$BUILD_DIR" \
+    ARCHS="x86_64 arm64" \
+    ONLY_ACTIVE_ARCH=NO \
     build
 
 APP_PATH="$BUILD_DIR/Build/Products/Release/OPPO主题打包解包工具.app"
@@ -50,7 +52,7 @@ fi
 
 echo ""
 echo "步骤 3: 复制图标文件到应用..."
-ICON_PATH="../icon.png"
+ICON_PATH="$SCRIPT_DIR/icon.png"
 if [ -f "$ICON_PATH" ]; then
     cp "$ICON_PATH" "$APP_PATH/Contents/Resources/icon.png"
     echo "图标文件已复制"

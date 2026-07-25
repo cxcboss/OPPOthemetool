@@ -3,5 +3,9 @@ node_modules/
 .env.local
 dist/
 build/
+build_universal/
+build_x86_64/
+__pycache__/
+*.pyc
 *.log
 .DS_Store

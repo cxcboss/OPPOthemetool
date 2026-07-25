@@ -21,8 +21,7 @@
 ## 🖥️ 系统要求
 
 - macOS 12.0 (Monterey) 或更高版本
-- Xcode 15.0 或更高版本
-- Homebrew（用于安装 XcodeGen）
+- 支持 Intel (x86_64) 和 Apple Silicon (arm64) Mac
 - Python 3.x（系统自带）
 
 ## 🚀 安装方法
@@ -34,21 +33,39 @@
 3. 双击打开应用即可使用
 4. 首次打开时如遇安全提示，请在「系统偏好设置 > 安全性与隐私」中点击「仍要打开」
 
-### 方法二：从源码构建
+### 方法二：从源码构建（完整 Xcode）
 
 ```bash
 # 克隆项目
 git clone https://github.com/cxcboss/OPPOthemetool.git
-cd OPPOthemetool/OPPOThemeTool
+cd OPPOthemetool
 
 # 安装 XcodeGen（如果未安装）
 brew install xcodegen
 
-# 生成项目并构建
+# 生成项目并构建（默认输出 Universal Binary，同时支持 x86_64 和 arm64）
 ./setup.sh
 
 # 构建完成后，app 文件位于 build/Build/Products/Release/
 ```
+
+### 方法三：从源码构建（仅 Command Line Tools）
+
+如果你没有安装完整版 Xcode，也可以使用系统自带的命令行工具构建 Universal Binary：
+
+```bash
+# 克隆项目
+git clone https://github.com/cxcboss/OPPOthemetool.git
+cd OPPOthemetool
+
+# 运行 Universal 构建脚本
+./build_universal.sh
+
+# 构建完成后，app 文件位于 build_universal/
+# 同时会生成 .zip 和 .dmg 安装包
+```
+
+> **注意**：Release 版本现在统一构建为 Universal Binary，同时兼容 Intel Mac 和 Apple Silicon Mac。
 
 ## 📖 使用说明
 
@@ -91,9 +108,15 @@ OPPOthemetool/
 │   ├── Python/               # Python 处理脚本
 │   │   └── processor.py      # 主题处理核心逻辑
 │   └── project.yml           # XcodeGen 项目配置
+├── tests/                    # 测试脚本
+│   ├── test_processor.py     # Python 核心逻辑测试
+│   └── test_build.sh         # Universal Binary 构建验证
+├── docs/                     # 文档
+│   └── COMPATIBILITY_REPORT.md  # x86/Universal 兼容性测试报告
 ├── icon.png                  # 应用图标源文件
 ├── README.md                 # 项目说明文档
-└── setup.sh                  # 构建脚本
+├── setup.sh                  # Xcode 构建脚本
+└── build_universal.sh        # 命令行工具 Universal 构建脚本
 ```
 
 ## 🛠️ 技术实现

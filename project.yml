@@ -12,6 +12,8 @@ settings:
     MACOSX_DEPLOYMENT_TARGET: "12.0"
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: ""
+    ARCHS: "x86_64 arm64"
+    ONLY_ACTIVE_ARCH: NO
 
 targets:
   OPPOThemeTool:
@@ -38,6 +40,8 @@ targets:
           - "@executable_path/../Frameworks"
         ENABLE_HARDENED_RUNTIME: false
         COMBINE_HIDPI_IMAGES: YES
+        ARCHS: "x86_64 arm64"
+        ONLY_ACTIVE_ARCH: NO
     entitlements:
       path: OPPOThemeTool/Resources/OPPOThemeTool.entitlements
       properties:
