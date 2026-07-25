@@ -779,6 +779,8 @@ func runPythonScript(mode: String, path: String, parentPath: String? = nil) -> P
     return result
 }
 
+#if swift(>=5.9)
 #Preview {
     UnpackView()
 }
+#endif
