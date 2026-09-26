@@ -3,5 +3,10 @@ node_modules/
 .env.local
 dist/
 build/
+build_*/
 *.log
 .DS_Store
+__pycache__/
+*.pyc
+# XcodeGen 生成的工程文件，运行 ./setup.sh 重新生成
+*.xcodeproj

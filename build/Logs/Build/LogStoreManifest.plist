@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>logFormatVersion</key>
-	<integer>12</integer>
+	<integer>13</integer>
 	<key>logs</key>
 	<dict>
-		<key>447B9F2E-0A6F-48FC-A4BA-FF615C33B6BB</key>
+		<key>0500BD93-84E8-44BF-9D63-51056FF38A50</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,13 +15,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>447B9F2E-0A6F-48FC-A4BA-FF615C33B6BB.xcactivitylog</string>
+			<string>0500BD93-84E8-44BF-9D63-51056FF38A50.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
@@ -29,7 +29,7 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
+				<integer>40</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>OPPOThemeTool project</string>
@@ -40,13 +40,13 @@
 			<key>signature</key>
 			<string>Building project OPPOThemeTool with scheme OPPOThemeTool and configuration Release</string>
 			<key>timeStartedRecording</key>
-			<real>791491177.04300404</real>
+			<real>812092906.054142</real>
 			<key>timeStoppedRecording</key>
-			<real>791491184.04473805</real>
+			<real>812092915.29999602</real>
 			<key>title</key>
 			<string>Building project OPPOThemeTool with scheme OPPOThemeTool and configuration Release</string>
 			<key>uniqueIdentifier</key>
-			<string>447B9F2E-0A6F-48FC-A4BA-FF615C33B6BB</string>
+			<string>0500BD93-84E8-44BF-9D63-51056FF38A50</string>
 		</dict>
 	</dict>
 </dict>

@@ -8,15 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		228AA03C224A015FB9C6254D /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C6A1F6A395A67F087311BC /* App.swift */; };
+		24984A86D1777B8500F84214 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 393D2FA785064485C738525F /* Assets.xcassets */; };
 		339242CBC35AEF6570FEF5DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87C41192EA7392462B6E45D /* ContentView.swift */; };
+		69E430BD486EA45ACF5FEC59 /* processor.py in Resources */ = {isa = PBXBuildFile; fileRef = C3AF25A9BA3220DBF9AF9BCD /* processor.py */; };
 		85CE6111086999D31664CF59 /* UnpackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82E08C7B5ED1BFF7D8D7675 /* UnpackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C40756D47CE8D8F49CD0C16 /* OPPOThemeTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OPPOThemeTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		393D2FA785064485C738525F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76C6A1F6A395A67F087311BC /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		A87C41192EA7392462B6E45D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BDF7E3B9D490C522C4131D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C3AF25A9BA3220DBF9AF9BCD /* processor.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = processor.py; sourceTree = "<group>"; };
 		D82E08C7B5ED1BFF7D8D7675 /* UnpackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpackView.swift; sourceTree = "<group>"; };
+		F1F99A156BC9C4D2A6FA3E37 /* OPPOThemeTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OPPOThemeTool.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -31,6 +37,17 @@
 			path = OPPOThemeTool/Sources;
 			sourceTree = "<group>";
 		};
+		35C1EED32F27A46E234FEFE6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				393D2FA785064485C738525F /* Assets.xcassets */,
+				BDF7E3B9D490C522C4131D6C /* Info.plist */,
+				F1F99A156BC9C4D2A6FA3E37 /* OPPOThemeTool.entitlements */,
+			);
+			name = Resources;
+			path = OPPOThemeTool/Resources;
+			sourceTree = "<group>";
+		};
 		5DBBAA65F887BFEB04FFAB50 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -39,9 +56,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6D8809FB7C2B195EE0B06FA7 /* Python */ = {
+			isa = PBXGroup;
+			children = (
+				C3AF25A9BA3220DBF9AF9BCD /* processor.py */,
+			);
+			name = Python;
+			path = OPPOThemeTool/Python;
+			sourceTree = "<group>";
+		};
 		F9FA85AE4B4BFCB2D09ADDC4 = {
 			isa = PBXGroup;
 			children = (
+				6D8809FB7C2B195EE0B06FA7 /* Python */,
+				35C1EED32F27A46E234FEFE6 /* Resources */,
 				1B043CD3CD8705F17CD1A528 /* Sources */,
 				5DBBAA65F887BFEB04FFAB50 /* Products */,
 			);
@@ -55,6 +83,7 @@
 			buildConfigurationList = BA85A18234493D2D33183916 /* Build configuration list for PBXNativeTarget "OPPOThemeTool" */;
 			buildPhases = (
 				23D2055E4228A249C4AACABA /* Sources */,
+				B40569E78A46FA3B19019447 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -100,6 +129,18 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B40569E78A46FA3B19019447 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24984A86D1777B8500F84214 /* Assets.xcassets in Resources */,
+				69E430BD486EA45ACF5FEC59 /* processor.py in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		23D2055E4228A249C4AACABA /* Sources */ = {
