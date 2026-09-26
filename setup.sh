@@ -50,13 +50,17 @@ fi
 
 echo ""
 echo "步骤 3: 复制图标文件到应用..."
-ICON_PATH="../icon.png"
+ICON_PATH="$SCRIPT_DIR/icon.png"
 if [ -f "$ICON_PATH" ]; then
     cp "$ICON_PATH" "$APP_PATH/Contents/Resources/icon.png"
     echo "图标文件已复制"
 else
     echo "警告: 图标文件不存在: $ICON_PATH"
 fi
+
+echo ""
+echo "步骤 3.5: 重新签名（复制图标会使原签名失效）..."
+codesign --force --sign - "$APP_PATH"
 
 echo ""
 echo "步骤 4: 复制应用到临时目录..."

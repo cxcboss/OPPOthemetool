@@ -26,6 +26,7 @@ def get_output_folder_name(source_folder):
             return f"{editor}{summary_text}"
         return None
     except Exception as e:
+        print(f"读取themeInfo.xml失败: {e}", file=sys.stderr)
         return None
 
 def is_zip_file(file_path):
@@ -143,11 +144,11 @@ def unpack_theme(theme_path, parent_folder):
                 with zipfile.ZipFile(zip_file, 'r') as zip_ref:
                     zip_ref.extractall(extract_path)
         except Exception as e:
-            pass
-    
+            print(f"解压 {file_name} 失败: {e}", file=sys.stderr)
+
     if temp_dir:
         shutil.rmtree(temp_dir, ignore_errors=True)
-    
+
     return {"success": True, "output_folder": dest_folder, "message": f"解压完成: {os.path.basename(dest_folder)}"}
 
 def ensure_unicode_path(path):
