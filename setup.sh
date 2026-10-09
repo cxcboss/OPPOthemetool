@@ -61,6 +61,10 @@ else
 fi
 
 echo ""
+echo "步骤 3.5: 重新签名（复制图标会使原签名失效）..."
+codesign --force --sign - "$APP_PATH"
+
+echo ""
 echo "步骤 4: 复制应用到临时目录..."
 TEMP_APP="$BUILD_DIR/OPPO主题打包解包工具.app"
 rm -rf "$TEMP_APP"

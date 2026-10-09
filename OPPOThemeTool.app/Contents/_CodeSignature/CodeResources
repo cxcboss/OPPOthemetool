@@ -3,9 +3,33 @@
 <plist version="1.0">
 <dict>
 	<key>files</key>
-	<dict/>
+	<dict>
+		<key>Resources/icon.png</key>
+		<data>
+		/TAPrFQML1cmMWU5qJKC6y2mBrM=
+		</data>
+		<key>Resources/processor.py</key>
+		<data>
+		3NP+7OCpTLbD8u6kSK3oOmid2RM=
+		</data>
+	</dict>
 	<key>files2</key>
-	<dict/>
+	<dict>
+		<key>Resources/icon.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			luoxQPt6kih89Vfq3SGms3vzi4A84Kh0Vi3xgdP+1ls=
+			</data>
+		</dict>
+		<key>Resources/processor.py</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			0AD2DLnpKEckdQ2TnAjIqkLzGnAlP/6LkNW2gfA2k/M=
+			</data>
+		</dict>
+	</dict>
 	<key>rules</key>
 	<dict>
 		<key>^Resources/</key>

@@ -22,7 +22,7 @@ struct ContentView: View {
     }
 }
 
-#if swift(>=5.9)
+#if swift(>=5.9) && !COMMAND_LINE_BUILD
 #Preview {
     ContentView()
 }

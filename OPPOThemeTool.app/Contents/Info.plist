@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>25D5087f</string>
+	<string>26A428</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>OPPO主题打包解包工具</string>
+	<key>CFBundleIconFile</key>
+	<string>icon</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.oppo.oppothemetool</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -17,29 +19,29 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1.1</string>
 	<key>CFBundleSupportedPlatforms</key>
 	<array>
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>25C57</string>
+	<string>26A425</string>
 	<key>DTPlatformName</key>
 	<string>macosx</string>
 	<key>DTPlatformVersion</key>
-	<string>26.2</string>
+	<string>27.0</string>
 	<key>DTSDKBuild</key>
-	<string>25C57</string>
+	<string>26A425</string>
 	<key>DTSDKName</key>
-	<string>macosx26.2</string>
+	<string>macosx27.0</string>
 	<key>DTXcode</key>
-	<string>2620</string>
+	<string>2700</string>
 	<key>DTXcodeBuild</key>
-	<string>17C52</string>
+	<string>27A266a</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>12.0</string>
 	<key>NSHumanReadableCopyright</key>

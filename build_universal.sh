@@ -5,7 +5,7 @@
 # 适用于仅安装了 Command Line Tools 的环境
 # 构建产物同时支持 Intel (x86_64) 和 Apple Silicon (arm64) Mac
 
-set -e
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
@@ -14,9 +14,13 @@ echo "=========================================="
 echo "OPPO 主题打包解包工具 - Universal 构建脚本"
 echo "=========================================="
 
-BUILD_DIR="$SCRIPT_DIR/build_universal"
+BUILD_DIR="${OPPO_BUILD_DIR:-$SCRIPT_DIR/build_universal}"
 APP_NAME="OPPO主题打包解包工具"
 BUNDLE_ID="com.oppo.oppothemetool"
+SOURCE_PLIST="$SCRIPT_DIR/OPPOThemeTool/Resources/Info.plist"
+APP_VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$SOURCE_PLIST")
+BUILD_VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$SOURCE_PLIST")
+SDK_PATH=$(xcrun --sdk macosx --show-sdk-path)
 
 # 清理旧构建
 rm -rf "$BUILD_DIR"
@@ -30,7 +34,7 @@ for tool in swiftc lipo codesign hdiutil zip; do
     fi
 done
 
-# 步骤 1: 准备源码（#Preview 已用 #if swift(>=5.9) 包裹，兼容 Swift 5.8）
+# 步骤 1: 准备源码（命令行构建禁用 Xcode Preview 宏）
 echo ""
 echo "步骤 1: 准备源码..."
 SRC_DIR="$BUILD_DIR/Sources"
@@ -40,7 +44,7 @@ cp OPPOThemeTool/Sources/*.swift "$SRC_DIR/"
 # 步骤 2: 编译 x86_64 可执行文件
 echo ""
 echo "步骤 2: 编译 x86_64 可执行文件..."
-swiftc -parse-as-library -target x86_64-apple-macos12.0 \
+xcrun swiftc -O -parse-as-library -D COMMAND_LINE_BUILD -sdk "$SDK_PATH" -target x86_64-apple-macos12.0 \
     "$SRC_DIR/App.swift" \
     "$SRC_DIR/ContentView.swift" \
     "$SRC_DIR/UnpackView.swift" \
@@ -49,7 +53,7 @@ swiftc -parse-as-library -target x86_64-apple-macos12.0 \
 # 步骤 3: 编译 arm64 可执行文件
 echo ""
 echo "步骤 3: 编译 arm64 可执行文件..."
-swiftc -parse-as-library -target arm64-apple-macos12.0 \
+xcrun swiftc -O -parse-as-library -D COMMAND_LINE_BUILD -sdk "$SDK_PATH" -target arm64-apple-macos12.0 \
     "$SRC_DIR/App.swift" \
     "$SRC_DIR/ContentView.swift" \
     "$SRC_DIR/UnpackView.swift" \
@@ -102,9 +106,9 @@ cat > "$CONTENTS_DIR/Info.plist" <<EOF
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.1.0</string>
+    <string>${APP_VERSION}</string>
     <key>CFBundleVersion</key>
-    <string>2</string>
+    <string>${BUILD_VERSION}</string>
     <key>LSMinimumSystemVersion</key>
     <string>12.0</string>
     <key>NSHumanReadableCopyright</key>
@@ -119,6 +123,7 @@ EOF
 echo ""
 echo "步骤 7: 复制资源文件..."
 cp OPPOThemeTool/Resources/OPPOThemeTool.entitlements "$RESOURCES_DIR/"
+cp OPPOThemeTool/Python/processor.py "$RESOURCES_DIR/processor.py"
 if [ -f "icon.png" ]; then
     cp "icon.png" "$RESOURCES_DIR/icon.png"
     echo "图标已复制"
@@ -132,12 +137,15 @@ echo "APPL????" > "$CONTENTS_DIR/PkgInfo"
 # 步骤 8: 代码签名
 echo ""
 echo "步骤 8: 进行 ad-hoc 代码签名..."
+# 清除资源复制时携带的扩展属性，避免严格签名验证失败。
+xattr -cr "$APP_DIR"
 codesign --force --deep --sign - "$APP_DIR"
 
 # 步骤 9: 验证签名和架构
 echo ""
 echo "步骤 9: 验证签名和架构..."
-codesign -dvv "$APP_DIR" 2>&1 | head -15
+codesign --verify --deep --strict "$APP_DIR"
+codesign -dvv "$APP_DIR"
 file "$APP_DIR/Contents/MacOS/$APP_NAME"
 
 # 步骤 10: 打包为 zip

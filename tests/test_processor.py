@@ -13,9 +13,12 @@ import shutil
 import tempfile
 import zipfile
 import unittest
+from pathlib import Path
 
-# 将项目根目录加入路径以导入 processor
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'OPPOThemeTool', 'Python'))
+# 将 OPPOThemeTool/Python 目录加入路径以导入 processor
+TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(TESTS_DIR)
+sys.path.insert(0, os.path.join(PROJECT_DIR, 'OPPOThemeTool', 'Python'))
 import processor
 
 
@@ -33,20 +36,17 @@ class TestThemeProcessor(unittest.TestCase):
     <VersionName>v1</VersionName>
 </Theme>
 """
-        with open(os.path.join(self.theme_dir, 'themeInfo.xml'), 'w', encoding='utf-8') as f:
-            f.write(theme_info)
+        (Path(self.theme_dir) / 'themeInfo.xml').write_text(theme_info, encoding='utf-8')
 
         # 创建 picture 目录及文件
         picture_dir = os.path.join(self.theme_dir, 'picture')
         os.makedirs(picture_dir)
-        with open(os.path.join(picture_dir, 'wallpaper.jpg'), 'w') as f:
-            f.write('fake image')
+        (Path(picture_dir) / 'wallpaper.jpg').write_text('fake image')
 
         # 创建一个会被 zip 压缩的子文件夹，确保解包时有 zip 文件可解压
         extra_dir = os.path.join(self.theme_dir, 'icons')
         os.makedirs(extra_dir)
-        with open(os.path.join(extra_dir, 'icon.png'), 'w') as f:
-            f.write('fake icon')
+        (Path(extra_dir) / 'icon.png').write_text('fake icon')
 
     def tearDown(self):
         shutil.rmtree(self.temp_dir, ignore_errors=True)
@@ -58,8 +58,7 @@ class TestThemeProcessor(unittest.TestCase):
         self.assertTrue(processor.is_zip_file(zip_path))
 
         txt_path = os.path.join(self.temp_dir, 'test.txt')
-        with open(txt_path, 'w') as f:
-            f.write('hello')
+        Path(txt_path).write_text('hello')
         self.assertFalse(processor.is_zip_file(txt_path))
 
     def test_get_output_folder_name(self):
