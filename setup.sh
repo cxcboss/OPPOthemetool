@@ -40,6 +40,8 @@ xcodebuild -project OPPOThemeTool.xcodeproj \
     -configuration Release \
     -destination "platform=macOS" \
     -derivedDataPath "$BUILD_DIR" \
+    ARCHS="x86_64 arm64" \
+    ONLY_ACTIVE_ARCH=NO \
     build
 
 APP_PATH="$BUILD_DIR/Build/Products/Release/OPPO主题打包解包工具.app"

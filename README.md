@@ -23,10 +23,10 @@
 - macOS 12.0 (Monterey) 或更高版本
 - Python 3（随 Xcode Command Line Tools 提供；macOS 12.3 起系统不再内置 Python，未安装 CLT 时请先在终端执行 `xcode-select --install`）
 
-从源码构建还需要：
+从源码构建可选择以下方式（均输出 x86_64 + arm64 双架构）：
 
-- Xcode 15.0 或更高版本
-- XcodeGen（`brew install xcodegen`）
+- Xcode 15.0 或更高版本 + XcodeGen（`brew install xcodegen`），运行 `./setup.sh`
+- 仅安装 Command Line Tools，运行 `./build_universal.sh`
 
 ## 🚀 安装方法
 
@@ -55,12 +55,22 @@ brew install xcodegen
 # 构建完成后，app 文件位于 build/OPPO主题打包解包工具.app
 ```
 
+仅安装 Command Line Tools 时：
+
+```bash
+./build_universal.sh
+# 产物位于 build_universal/，包含双架构 .app、ZIP 和 DMG
+```
+
+源码构建支持 Intel Mac 与 Apple Silicon Mac；仓库已有二进制请单独确认架构。
+
 setup.sh 会依次完成：XcodeGen 生成工程 → xcodebuild Release 构建 → 复制应用图标 → ad-hoc 重新签名。
 
 ## 🧪 运行测试
 
 ```bash
 python3 tests/test_processor.py
+bash tests/test_build.sh  # 完整构建并验证双架构、签名、资源与版本号
 ```
 
 测试覆盖 ZIP 识别、themeInfo.xml 解析、打包输出与打包→解包回环。
@@ -106,11 +116,13 @@ OPPOthemetool/
 │   └── Python/
 │       └── processor.py      # 主题处理核心逻辑（唯一脚本源，构建时打包进 App Resources）
 ├── tests/
-│   └── test_processor.py     # Python 核心逻辑单元测试
+│   ├── test_processor.py     # Python 核心逻辑单元测试
+│   └── test_build.sh         # 双架构构建验证
 ├── OPPOThemeTool.app/        # 最新构建产物（随仓库分发）
 ├── icon.png                  # 应用图标源文件
 ├── project.yml               # XcodeGen 项目配置
-├── setup.sh                  # 构建脚本
+├── setup.sh                  # Xcode 构建脚本
+├── build_universal.sh        # Command Line Tools 双架构构建脚本
 └── README.md
 ```
 
